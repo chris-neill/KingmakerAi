@@ -38,7 +38,7 @@ namespace KingmakerAI
             fixMeleeClerics();
             fixBards();
             fixGoblinShaman();
-            fixDrawEldritchArcher();
+            //fixDrawEldritchArcher();
 
             fixAbilities();
         }
@@ -364,7 +364,7 @@ namespace KingmakerAI
             var charge_action = library.Get<BlueprintAiCastSpell>("05003725a881c10419530387b6de5c9a");
             charge_action.BaseScore = 1.3f;
             charge_action.TargetConsiderations = charge_action.TargetConsiderations.AddToArray(unit_far_consideration);
-            attack_actions.AddToArray(charge_action);
+            attack_actions = attack_actions.AddToArray(charge_action);
             foreach (var attack_action in attack_actions)
             {
                 attack_action.TargetConsiderations = attack_action.TargetConsiderations.AddToArray(ac_consideration);
@@ -375,14 +375,11 @@ namespace KingmakerAI
             {
                 var first_attack = b.Actions.Where(a => attack_actions.Contains(a)).FirstOrDefault();
 
-                if (first_attack != null && !attack_actions.Contains(charge_action))
+                if (first_attack != null && !b.Actions.Contains(charge_action))
                 {
                     b.Actions = b.Actions.AddToArray(charge_action);
                 }
             }
-
-
-
         }
 
         static void fixBanditTransmuters()

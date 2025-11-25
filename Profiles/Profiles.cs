@@ -81,6 +81,7 @@ namespace KingmakerAI.Profiles
                 Spells.mage_armor, Spells.enlarge_person, Spells.bulls_strength, Spells.mirror_image, Spells.foxs_cunning, Spells.cats_grace, Spells.elemental_body1, Spells.bears_endurance_mass,
                 CallOfTheWild.NewSpells.fly_mass, Spells.frightful_aspect, Spells.fiery_body, NewSpells.fickle_winds,
             };
+            free_spells = free_spells.Where(spell => IsPriorityBuff(spell, false)).ToArray();
             profile.addFeatureComponent(0,
                 Helpers.Create<CallOfTheWild.TurnActionMechanics.UseAbilitiesAsFreeAction>(u => u.abilities = free_spells),
                 Helpers.Create<AutoMetamagic>(u => { u.Abilities = free_spells.ToList(); u.Metamagic = Kingmaker.UnitLogic.Abilities.Metamagic.Reach; })
@@ -186,6 +187,7 @@ namespace KingmakerAI.Profiles
                 Spells.mage_armor, Spells.mirror_image, Spells.summon_monster5, Spells.summon_monster7, Spells.summon_monster8, Spells.summon_monster9,
                 Spells.sea_mantle
             };
+            free_spells = free_spells.Where(spell => IsPriorityBuff(spell, false)).ToArray();
             profile.addFeatureComponent(0,
                 Helpers.Create<CallOfTheWild.TurnActionMechanics.UseAbilitiesAsFreeAction>(u => u.abilities = free_spells),
                 Helpers.Create<AutoMetamagic>(u => { u.Abilities = free_spells.ToList(); u.Metamagic = Kingmaker.UnitLogic.Abilities.Metamagic.Reach; })
@@ -288,6 +290,7 @@ namespace KingmakerAI.Profiles
             {
                 Spells.mage_armor, Spells.mirror_image, Spells.false_life, Spells.false_life_greater
             };
+            free_spells = free_spells.Where(spell => IsPriorityBuff(spell, false)).ToArray();
             profile.addFeatureComponent(0,
                 Helpers.Create<CallOfTheWild.TurnActionMechanics.UseAbilitiesAsFreeAction>(u => u.abilities = free_spells),
                 Helpers.Create<AutoMetamagic>(u => { u.Abilities = free_spells.ToList(); u.Metamagic = Kingmaker.UnitLogic.Abilities.Metamagic.Reach; })
@@ -379,6 +382,7 @@ namespace KingmakerAI.Profiles
             {
                 Spells.mage_armor, Spells.mirror_image, Spells.blur, Spells.displacement
             };
+            free_spells = free_spells.Where(spell => IsPriorityBuff(spell, false)).ToArray();
             profile.addFeatureComponent(0,
                 Helpers.Create<CallOfTheWild.TurnActionMechanics.UseAbilitiesAsFreeAction>(u => u.abilities = free_spells),
                 Helpers.Create<AutoMetamagic>(u => { u.Abilities = free_spells.ToList(); u.Metamagic = Kingmaker.UnitLogic.Abilities.Metamagic.Reach; })
@@ -494,6 +498,7 @@ namespace KingmakerAI.Profiles
                 Spells.eagles_splendor, Spells.bulls_Strength_mass, Spells.heroism, Spells.heroic_invocation, Spells.stoneskin_communal, Spells.summon_elemental_elder,
                 Spells.fiery_body, Spells.legendary_proportions, Spells.form_of_the_dragon1, Spells.form_of_the_dragon2, Spells.form_of_the_dragon3
             };
+            free_spells = free_spells.Where(spell => IsPriorityBuff(spell, false)).ToArray();
             profile.addFeatureComponent(0,
                 Helpers.Create<CallOfTheWild.TurnActionMechanics.UseAbilitiesAsFreeAction>(u => u.abilities = free_spells),
                 Helpers.Create<AutoMetamagic>(u => { u.Abilities = free_spells.ToList(); u.Metamagic = Kingmaker.UnitLogic.Abilities.Metamagic.Reach; })
@@ -612,6 +617,7 @@ namespace KingmakerAI.Profiles
                 Spells.eagles_splendor, Spells.bears_endurance_mass, Spells.create_undead, Spells.stoneskin_communal,
                 Spells.frightful_aspect
             };
+            free_spells = free_spells.Where(spell => IsPriorityBuff(spell, false)).ToArray();
             profile.addFeatureComponent(0,
                 Helpers.Create<CallOfTheWild.TurnActionMechanics.UseAbilitiesAsFreeAction>(u => u.abilities = free_spells),
                 Helpers.Create<AutoMetamagic>(u => { u.Abilities = free_spells.ToList(); u.Metamagic = Kingmaker.UnitLogic.Abilities.Metamagic.Reach; })
@@ -733,6 +739,7 @@ namespace KingmakerAI.Profiles
                 Spells.eagles_splendor, Spells.bears_endurance_mass, Spells.cats_grace, Spells.stoneskin_communal, Spells.heroism, Spells.heroism_greater, Spells.heroic_invocation,
                 Spells.sea_mantle, Spells.change_staff, Wildshape.shapechange, Spells.legendary_proportions, Spells.heroic_invocation
             };
+            free_spells = free_spells.Where(spell => IsPriorityBuff(spell, false)).ToArray();
             profile.addFeatureComponent(0,
                 Helpers.Create<CallOfTheWild.TurnActionMechanics.UseAbilitiesAsFreeAction>(u => u.abilities = free_spells),
                 Helpers.Create<AutoMetamagic>(u => { u.Abilities = free_spells.ToList(); u.Metamagic = Kingmaker.UnitLogic.Abilities.Metamagic.Reach; } )
@@ -854,6 +861,7 @@ namespace KingmakerAI.Profiles
                 Spells.longstrider, Spells.feather_step, Spells.bulls_strength, Spells.mirror_image, Spells.owls_wisdom, Spells.cats_grace, Spells.feather_step_mass, Spells.bears_endurance_mass,
                 Spells.stone_skin, Spells.stoneskin_communal,  Spells.summon_elder_worm, Spells.sea_mantle, Spells.frightful_aspect, Spells.fiery_body, NewSpells.fickle_winds,
             };
+            free_spells = free_spells.Where(spell => IsPriorityBuff(spell, false)).ToArray();
             profile.addFeatureComponent(0,
                 Helpers.Create<CallOfTheWild.TurnActionMechanics.UseAbilitiesAsFreeAction>(u => u.abilities = free_spells),
                 Helpers.Create<AutoMetamagic>(u => { u.Abilities = free_spells.ToList(); u.Metamagic = Kingmaker.UnitLogic.Abilities.Metamagic.Reach; })
@@ -959,6 +967,7 @@ namespace KingmakerAI.Profiles
                 Spells.thorn_body, Spells.cape_of_wasps,
                 Wildshapes.leopard, Wildshapes.bear, Wildshapes.smilodon, Wildshapes.giant_flytrap
             };
+            free_spells = free_spells.Where(spell => IsPriorityBuff(spell, false)).ToArray();
             profile.addFeatureComponent(0,
                 Helpers.Create<CallOfTheWild.TurnActionMechanics.UseAbilitiesAsFreeAction>(u => u.abilities = free_spells),
                 Helpers.Create<AutoMetamagic>(u => { u.Abilities = free_spells.ToList(); u.Metamagic = Kingmaker.UnitLogic.Abilities.Metamagic.Reach; })
@@ -1035,6 +1044,7 @@ namespace KingmakerAI.Profiles
                 Spells.remove_fear, Spells.heroism, Spells.eagles_splendor, Spells.cats_grace, Spells.good_hope, Spells.feather_step_mass,
                 Spells.echolocation, Spells.see_invisibility_communal, Spells.heroism_greater, Spells.cats_grace_mass
             };
+            free_spells = free_spells.Where(spell => IsPriorityBuff(spell, false)).ToArray();
             profile.addFeatureComponent(0,
                 Helpers.Create<CallOfTheWild.TurnActionMechanics.UseAbilitiesAsFreeAction>(u => u.abilities = free_spells),
                 Helpers.Create<AutoMetamagic>(u => { u.Abilities = free_spells.ToList(); u.Metamagic = Kingmaker.UnitLogic.Abilities.Metamagic.Reach; })
@@ -1140,6 +1150,7 @@ namespace KingmakerAI.Profiles
                 Spells.stone_skin, Spells.stoneskin_communal,  Spells.false_life_greater, Spells.spell_resistance, Spells.elemental_body3, Spells.legendary_proportions,
                 AlchemistAbilities.dex_mutagen, AlchemistAbilities.int_cognatogen, AlchemistAbilities.int_greater_cognatogen, AlchemistAbilities.int_grand_cognatogen
             };
+            free_spells = free_spells.Where(spell => IsPriorityBuff(spell, false)).ToArray();
             profile.addFeatureComponent(0,
                 Helpers.Create<CallOfTheWild.TurnActionMechanics.UseAbilitiesAsFreeAction>(u => u.abilities = free_spells),
                 Helpers.Create<AutoMetamagic>(u => { u.Abilities = free_spells.ToList(); u.Metamagic = Kingmaker.UnitLogic.Abilities.Metamagic.Reach; })
@@ -1253,6 +1264,7 @@ namespace KingmakerAI.Profiles
                 Spells.protection_from_energy_communal, Spells.freedom_of_movement, Spells.delay_poison_communal, NewSpells.aura_of_doom,
                 Spells.angleic_aspect, Spells.frightful_aspect, NewSpells.fickle_winds, Spells.summon_monster9, Spells.remove_fear
             };
+            free_spells = free_spells.Where(spell => IsPriorityBuff(spell, false)).ToArray();
             profile.addFeatureComponent(0,
                 Helpers.Create<CallOfTheWild.TurnActionMechanics.UseAbilitiesAsFreeAction>(u => u.abilities = free_spells),
                 Helpers.Create<AutoMetamagic>(u => { u.Abilities = free_spells.ToList(); u.Metamagic = Kingmaker.UnitLogic.Abilities.Metamagic.Reach; })
@@ -1356,6 +1368,7 @@ namespace KingmakerAI.Profiles
                 Spells.protection_from_energy_communal, Spells.freedom_of_movement, Spells.delay_poison_communal, NewSpells.aura_of_doom,
                 Spells.angleic_aspect, Spells.frightful_aspect, NewSpells.fickle_winds, Spells.summon_monster9,
             };
+            free_spells = free_spells.Where(spell => IsPriorityBuff(spell, false)).ToArray();
             profile.addFeatureComponent(0,
                 Helpers.Create<CallOfTheWild.TurnActionMechanics.UseAbilitiesAsFreeAction>(u => u.abilities = free_spells),
                 Helpers.Create<AutoMetamagic>(u => { u.Abilities = free_spells.ToList(); u.Metamagic = Kingmaker.UnitLogic.Abilities.Metamagic.Reach; })
@@ -1469,6 +1482,7 @@ namespace KingmakerAI.Profiles
                 Spells.summon_monster7, Spells.summon_monster8, Spells.summon_monster9, Spells.angleic_aspect_greater,
                 Spells.angleic_aspect, Spells.frightful_aspect, NewSpells.fickle_winds,
             };
+            free_spells = free_spells.Where(spell => IsPriorityBuff(spell, false)).ToArray();
             profile.addFeatureComponent(0,
                 Helpers.Create<CallOfTheWild.TurnActionMechanics.UseAbilitiesAsFreeAction>(u => u.abilities = free_spells),
                 Helpers.Create<AutoMetamagic>(u => { u.Abilities = free_spells.ToList(); u.Metamagic = Kingmaker.UnitLogic.Abilities.Metamagic.Reach; })
@@ -1550,7 +1564,7 @@ namespace KingmakerAI.Profiles
             {
                 Spells.reduce_person, Spells.shield, Spells.mirror_image, Spells.blur
             };
-
+            free_spells = free_spells.Where(spell => IsPriorityBuff(spell, false)).ToArray();
             //feats
             profile.addFeatureSelection(FeatSelections.basic_feat, Feats.point_blank_shot);//0
             profile.addFeatureSelection(FeatSelections.basic_feat, Feats.precise_shot);//1

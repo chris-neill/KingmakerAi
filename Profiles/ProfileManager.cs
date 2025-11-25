@@ -1,4 +1,5 @@
 ﻿using CallOfTheWild;
+using Discord;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Selection;
@@ -8,7 +9,10 @@ using Kingmaker.Enums;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Abilities.Components;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
+using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Actions;
+using RewiredConsts;
+using Steamworks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -100,6 +104,8 @@ namespace KingmakerAI.Profiles
                                                  Consideration[] extra_actor_consideration = null, Consideration[] extra_target_consideration = null,
                                                  int combat_count = 0, int cooldown_rounds = 0, string custom_name = "")
         {
+            is_precast = IsPriorityBuff(spell, is_precast);
+
             string name = (is_precast ? "Precast" : "") + "Aoe" + spell.name + (variant == null ? "" : $"{variant.name}") + score.ToString().Replace('.', '_');
 
             var ability = variant ?? spell;
@@ -174,6 +180,8 @@ namespace KingmakerAI.Profiles
                                                          Consideration[] extra_actor_consideration = null, Consideration[] extra_target_consideration = null,
                                                          int combat_count = 0, int cooldown_rounds = 0)
         {
+            is_precast = IsPriorityBuff(spell, is_precast);
+
             string name = (is_precast ? "Precast" : "") + "SingleTarget" + spell.name + (variant == null ? "" : $"{variant.name}") + score.ToString().Replace('.', '_');
 
             var ability = variant ?? spell;
@@ -239,6 +247,8 @@ namespace KingmakerAI.Profiles
                                                  Consideration[] extra_actor_consideration = null, Consideration[] extra_target_consideration = null,
                                                  int combat_count = 0, int cooldown_rounds = 0)
         {
+            is_precast = IsPriorityBuff(spell, is_precast);
+
             string name = (is_precast ? "Precast" : "") + "Self" + spell.name + (variant == null ? "" : $"{variant.name}") + score.ToString().Replace('.', '_');
 
             var ability = variant ?? spell;
@@ -275,6 +285,37 @@ namespace KingmakerAI.Profiles
             return cast_spell_actions[name];
         }
 
+        static public bool IsPriorityBuff(BlueprintAbility spell, bool is_precast)
+        {
+            var runAction = spell.GetComponent<AbilityEffectRunAction>();
+            if (runAction == null || runAction.Actions == null || runAction.Actions.Actions == null)
+                return false;
+
+            foreach (var action in runAction.Actions.Actions)
+            {
+                if (action is ContextActionApplyBuff buffAction)
+                {
+                    var duration = buffAction.DurationValue;
+                    if (duration == null)
+                        continue;
+
+                    switch (duration.Rate)
+                    {
+                        case DurationRate.Days:
+                        case DurationRate.Hours:
+                        case DurationRate.TenMinutes:
+                            return true;
+
+                        case DurationRate.Minutes:
+                            if (is_precast)
+                                return true;
+                            break;
+                    }
+                }
+            }
+
+            return false;
+        }
 
         static BlueprintAiCastSpell createCastSpellAction(string name, BlueprintAbility spell, Consideration[] actor_consideration, Consideration[] target_consideration,
                                                        float base_score = 1f, BlueprintAbility variant = null, int combat_count = 0, int cooldown_rounds = 0, string guid = "")
@@ -382,7 +423,7 @@ namespace KingmakerAI.Profiles
             createClericCasterNegative();
             createBardProfile();
             createClericFighter();
-            createEldritchArcher();
+            //createEldritchArcher();
         }
 
 

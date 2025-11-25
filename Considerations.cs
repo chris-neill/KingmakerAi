@@ -212,19 +212,37 @@ namespace KingmakerAI.NewConsiderations
 
             score *= (1.0f - distance_weight * (1.0f - distance_coeff)); //will more likely attack closer units if does not have ranged weapon
 
+            bool tumbleActive = false;
             var tumble_toggle = attacker.ActivatableAbilities.Enumerable.Where(a => a.Blueprint == tumble).FirstOrDefault();
             if (tumble_toggle != null && !attacker.IsPlayerFaction)
             {
                 tumble_toggle.IsOn = attacker.CombatState.IsEngaged && attacker.Stats.GetStat(Kingmaker.EntitySystem.Stats.StatType.SkillMobility).ModifiedValue >= 10;
+                tumbleActive = tumble_toggle.IsOn;
             }
 
+            var engaged_by = attacker.CombatState.EngagedBy;
+            var targetEngages = engaged_by.Contains(target);
+
             var engaged_score = 1.0f - engaged_by_weight;
-            if (attacker.CombatState.EngagedBy.Contains(target))
+            if (targetEngages)
             {
                 engaged_score = 1.0f;
             }
 
             score *= engaged_score;
+
+            if (!tumbleActive)
+            {
+                int engagedCount = engaged_by.Count;
+
+                if (!targetEngages && engagedCount > 0)
+                {
+                    const float k = 0.5f;
+                    float stickiness = 1.0f / (1.0f + k * engagedCount);
+
+                    score *= stickiness;
+                }
+            }            
 
             return Math.Max(Math.Min(score, max_score), min_score);
         }
